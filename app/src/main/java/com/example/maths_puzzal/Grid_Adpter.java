@@ -2,6 +2,7 @@ package com.example.maths_puzzal;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +50,35 @@ public class Grid_Adpter extends BaseAdapter
         view = LayoutInflater.from(level_activity).inflate(R.layout.grid_item, viewGroup, false);
 
         levelBtn = view.findViewById(R.id.levelBtn);
+        win=view.findViewById(R.id.win);
+        String status = preferences.getString("levelStatus" + i, "pending");
+        int lastlevel = preferences.getInt("LastLevel", -1);
+
+
+        if (status.equals("skip") || i == lastlevel + 1) {
+            win.setImageResource(0);
+            levelBtn.setText(String.valueOf(i + 1));
+            levelBtn.setVisibility(View.VISIBLE);
+        }
+        if (status.equals("win")) {
+            win.setImageResource(R.drawable.tick);
+            levelBtn.setText(String.valueOf(i + 1));
+            levelBtn.setVisibility(View.VISIBLE);
+
+        }
+        if (status.equals("win") || status.equals("skip") || i == lastlevel + 1) {
+
+            levelBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(level_activity, Puzzal_Activity.class);
+                    intent.putExtra("level", i);
+                    level_activity.startActivity(intent);
+                    level_activity.finish();
+                }
+            });
+
+        }
         return view;
     }
 }

@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.GridView;
-import android.widget.ListAdapter;
+
 
 public class Level_Activity extends AppCompatActivity
 {
@@ -20,6 +20,6 @@ public class Level_Activity extends AppCompatActivity
 
         grid = findViewById(R.id.grid);
         grid_adpter = new Grid_Adpter(Level_Activity.this, PUZZLESLIST);
-        grid.setAdapter((ListAdapter) grid_adpter);
+        grid.setAdapter( grid_adpter);
     }
 }
