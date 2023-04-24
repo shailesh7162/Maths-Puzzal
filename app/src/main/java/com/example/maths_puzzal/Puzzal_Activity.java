@@ -80,7 +80,9 @@ public class Puzzal_Activity extends AppCompatActivity implements View.OnClickLi
                     }
                 }
             }
+
         });
+
         skipBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
